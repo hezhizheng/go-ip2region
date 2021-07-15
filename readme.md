@@ -1,6 +1,6 @@
 # go-ip2region
 
-> 基于 [ip2region](https://github.com/lionsoul2014/ip2region)  使用 go 扩展的一个简单 IP 地址归属地查询服务查询服务
+> 基于 [ip2region](https://github.com/lionsoul2014/ip2region)  使用 go 扩展的一个简单 IP 地址归属地查询服务
 
 ## 功能
 - 提供 http 接口查询 IP 地址归属地
