@@ -39,6 +39,7 @@ type IpInfo struct {
 	Province string `json:"province"` // 省
 	City     string `json:"city"`     // 市
 	County   string `json:"county"`   // 县、区
+	Region   string  `json:"region"`  // 区域位置
 	ISP      string `json:"isp"`      // 互联网服务提供商
 }
 
@@ -117,7 +118,8 @@ func queryIp(w http.ResponseWriter, r *http.Request) {
 		Country:  info.Country,
 		Province: info.Province,
 		City:     info.City,
-		County:   info.Region,
+		County:   "",
+		Region:   info.Region,
 	}
 
 	msg, _ := json.Marshal(JsonRes{Code: 200, Data: ipInfo})
