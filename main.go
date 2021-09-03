@@ -22,7 +22,10 @@ var (
 	}
 )
 
-const ipDbPath = "./ip2region.db"
+const (
+	ipDbPath = "./ip2region.db"
+	defaultDbUrl = "1" // 默认下载 来自 lionsoul2014 仓库的 ip db文件
+)
 
 type JsonRes struct {
 	Code int         `json:"code"`
@@ -40,8 +43,6 @@ type IpInfo struct {
 }
 
 func init() {
-	checkIpDbIsExist()
-
 	_p := flag.String("p", "9090", "本地监听的端口")
 	_d := flag.String("d", "0", "仅用于下载最新的ip地址库，保存在当前目录")
 	flag.Parse()
@@ -53,10 +54,12 @@ func init() {
 		if value, ok := dbUrl[d]; ok {
 			downloadIpDb(value)
 		}else{
-			downloadIpDb(dbUrl["1"])
+			downloadIpDb(dbUrl[defaultDbUrl])
 		}
 		os.Exit(1)
 	}
+
+	checkIpDbIsExist()
 }
 
 func main() {
@@ -133,7 +136,7 @@ func getIp(r *http.Request) string {
 func checkIpDbIsExist() {
 	if _, err := os.Stat(ipDbPath); os.IsNotExist(err) {
 		log.Println("ip 地址库文件不存在")
-		downloadIpDb(dbUrl["1"])
+		downloadIpDb(dbUrl[defaultDbUrl])
 	}
 }
 
