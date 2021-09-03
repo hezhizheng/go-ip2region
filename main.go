@@ -16,6 +16,10 @@ var (
 	wg   = sync.WaitGroup{}
 	port = ""
 	d    = "" // 下载标识
+	dbUrl = map[string]string{
+		"1": "https://hub.fastgit.org/lionsoul2014/ip2region/raw/master/data/ip2region.db",
+		"2": "https://hub.fastgit.org/bqf9979/ip2region/raw/master/data/ip2region.db",
+	}
 )
 
 const ipDbPath = "./ip2region.db"
@@ -45,8 +49,12 @@ func init() {
 	port = *_p
 	d = *_d
 
-	if d == "1" {
-		downloadIpDb()
+	if d != "0" {
+		if value, ok := dbUrl[d]; ok {
+			downloadIpDb(value)
+		}else{
+			downloadIpDb(dbUrl["1"])
+		}
 		os.Exit(1)
 	}
 }
@@ -125,15 +133,15 @@ func getIp(r *http.Request) string {
 func checkIpDbIsExist() {
 	if _, err := os.Stat(ipDbPath); os.IsNotExist(err) {
 		log.Println("ip 地址库文件不存在")
-		downloadIpDb()
+		downloadIpDb(dbUrl["1"])
 	}
 }
 
-func downloadIpDb() {
-	log.Println("正在下载最新的 ip 地址库...: ")
+func downloadIpDb(url string) {
+	log.Println("正在下载最新的 ip 地址库...："+url)
 	wg.Add(1)
 	go func() {
-		downloadFile(ipDbPath, "https://hub.fastgit.org/lionsoul2014/ip2region/raw/master/data/ip2region.db")
+		downloadFile(ipDbPath, url)
 		wg.Done()
 	}()
 	wg.Wait()
