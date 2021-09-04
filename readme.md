@@ -47,8 +47,12 @@ curl http://127.0.0.1:9090?ip=59.42.37.186
 
 ## 下载/更新 IP 地址库
 ```
-// 仅用于下载/更新 IP 地址库
+// 仅用于下载/更新 IP 地址库 默认库 (来源于：https://github.com/lionsoul2014/ip2region)
 ./go-ip2region_windows_amd64.exe -d 1
+
+// 来源于：https://github.com/bqf9979/ip2region (PS：目前这个貌似更准确)
+// https://github.com/lionsoul2014/ip2region/issues/201#issuecomment-911697424
+./go-ip2region_windows_amd64.exe -d 2
 ```
 
 ## 自行编译
