@@ -85,6 +85,13 @@ func queryIp(w http.ResponseWriter, r *http.Request) {
 		}
 	}()
 
+	if  r.URL.Path != "/" {
+		w.WriteHeader(404)
+		msg, _ := json.Marshal(&JsonRes{Code: 4000, Msg: r.URL.Path+" 404 NOT FOUND !"})
+		w.Write(msg)
+		return
+	}
+
 	r.ParseForm() // 解析参数
 
 	ip := r.FormValue("ip")
