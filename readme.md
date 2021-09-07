@@ -9,7 +9,7 @@
 - 提供命令行 下载/更新 最新的 `ip2region.db` ip 库 (数据来源原仓库)
 
 ## 使用
-可直接下载 [releases](https://github.com/hezhizheng/go-ip2region/releases) 文件启动即可，可选参数说明：
+可直接下载 [releases](https://github.com/hezhizheng/go-ip2region/releases) 文件启动即可(可直接双击启动)，可选参数说明：
 ```
 ./go-ip2region_windows_amd64.exe -h
 Usage of D:\go-ip2region\go-ip2region_windows_amd64.exe:
