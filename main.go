@@ -110,7 +110,7 @@ func queryIp(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	info, searchErr := region.BinarySearch(ip)
+	info, searchErr := region.MemorySearch(ip)
 
 	if searchErr != nil {
 		msg, _ := json.Marshal(JsonRes{Code: 4002, Msg: searchErr.Error()})
