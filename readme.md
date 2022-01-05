@@ -37,7 +37,8 @@ curl http://127.0.0.1:9090?ip=59.42.37.186
         "country": "中国",
         "province": "广东",
         "city": "广州",
-        "county": "0",
+        "county": "",
+        "region": "亚洲",
         "isp": "电信"
     }
 }
