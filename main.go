@@ -17,8 +17,8 @@ var (
 	port = ""
 	d    = "" // 下载标识
 	dbUrl = map[string]string{
-		"1": "https://hub.fastgit.org/lionsoul2014/ip2region/raw/master/data/ip2region.db",
-		"2": "https://hub.fastgit.org/bqf9979/ip2region/raw/master/data/ip2region.db",
+		"1": "https://github.do/https://raw.githubusercontent.com/lionsoul2014/ip2region/raw/master/data/ip2region.db",
+		"2": "https://github.do/https://raw.githubusercontent.com/bqf9979/ip2region/raw/master/data/ip2region.db",
 	}
 )
 
@@ -44,7 +44,7 @@ type IpInfo struct {
 }
 
 func init() {
-	_p := flag.String("p", "80", "本地监听的端口")
+	_p := flag.String("p", "9090", "本地监听的端口")
 	_d := flag.String("d", "0", "仅用于下载最新的ip地址库，保存在当前目录")
 	flag.Parse()
 
