@@ -24,7 +24,7 @@ var (
 
 const (
 	ipDbPath = "./ip2region.db"
-	defaultDbUrl = "1" // 默认下载 来自 lionsoul2014 仓库的 ip db文件
+	defaultDbUrl = "2" // 默认下载 来自 bqf9979 仓库的 ip db文件,在维护，且有付费资源
 )
 
 type JsonRes struct {
@@ -44,7 +44,7 @@ type IpInfo struct {
 }
 
 func init() {
-	_p := flag.String("p", "9090", "本地监听的端口")
+	_p := flag.String("p", "80", "本地监听的端口")
 	_d := flag.String("d", "0", "仅用于下载最新的ip地址库，保存在当前目录")
 	flag.Parse()
 
@@ -66,7 +66,7 @@ func init() {
 func main() {
 	http.HandleFunc("/", queryIp)
 
-	link := "http://127.0.0.1:" + port
+	link := "http://0.0.0.0:" + port
 
 	log.Println("监听端口", link)
 	listenErr := http.ListenAndServe(":"+port, nil)
