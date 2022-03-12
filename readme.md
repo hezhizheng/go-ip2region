@@ -18,6 +18,16 @@ Usage of D:\go-ip2region\go-ip2region_windows_amd64.exe:
   -p string
         本地监听的端口 (default "9090")
 ```
+### Docker
+```bash
+// 克隆项目
+git clone https://github.com/hezhizheng/go-ip2region.git
+cd go-ip2region
+// 构建镜像
+docker build -t go-ip2region:latest
+// 运行镜像
+docker run -itd --name=ipinfo -p 9090:9090 go-ip2region:latest
+```
 
 ## 启动http服务
 ```
