@@ -76,7 +76,7 @@ func main() {
 }
 
 func queryIp(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("content-type", "text/json")
+	w.Header().Set("content-type", "text/json;charset=utf-8")
 
 	defer func() {
 		//捕获 panic
