@@ -112,11 +112,10 @@ func queryIp(w http.ResponseWriter, r *http.Request) {
 	}
 	
 	// 分割字符串
-	result := []struct{}
+	result := []IpInfo{}
 	ip_arr := strings.Split(ip,",")
 	for _,ip := range ip_arr{
 		info, searchErr := region.MemorySearch(ip)
-
 		if searchErr != nil {
 			msg, _ := json.Marshal(JsonRes{Code: 4002, Msg: searchErr.Error()})
 			w.Write(msg)
@@ -124,15 +123,16 @@ func queryIp(w http.ResponseWriter, r *http.Request) {
 		}
 
 		// 赋值查询结果
-		result = append(result,&IpInfo{
-			Ip:       ip,
-			ISP:      info.ISP,
-			Country:  info.Country,
-			Province: info.Province,
-			City:     info.City,
-			County:   "",
-			Region:   info.Region,
-		})
+		ipinfo := &IpInfo{
+                        Ip:       ip,
+                        ISP:      info.ISP,
+                        Country:  info.Country,
+                        Province: info.Province,
+                        City:     info.City,
+                        County:   "",
+                        Region:   info.Region,
+                } 
+		result = append(result,*ipinfo)
 	}
 	msg, _ := json.Marshal(JsonRes{Code: 200, Data: result})
 	w.Write(msg)
