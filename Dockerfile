@@ -13,7 +13,7 @@ COPY . .
 RUN go mod tidy
 RUN go build -o main .
 # 下载最新的数据库
-RUN wget https://github.do/https://raw.githubusercontent.com/bqf9979/ip2region/master/data/ip2region.db
+# RUN wget https://github.do/https://raw.githubusercontent.com/bqf9979/ip2region/master/data/ip2region.db
 
 
 FROM scratch
