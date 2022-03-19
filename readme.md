@@ -9,7 +9,7 @@
 - 提供命令行 下载/更新 最新的 `ip2region.db` ip 库 (数据来源原仓库)
 
 ## 使用
-可直接下载 [releases](https://github.com/hezhizheng/go-ip2region/releases) 文件启动即可，可选参数说明：
+可直接下载 [releases](https://github.com/hezhizheng/go-ip2region/releases) 文件启动即可(可直接双击启动)，可选参数说明：
 ```
 ./go-ip2region_windows_amd64.exe -h
 Usage of D:\go-ip2region\go-ip2region_windows_amd64.exe:
@@ -37,7 +37,8 @@ curl http://127.0.0.1:9090?ip=59.42.37.186
         "country": "中国",
         "province": "广东",
         "city": "广州",
-        "county": "0",
+        "county": "",
+        "region": "亚洲",
         "isp": "电信"
     }
 }
@@ -47,8 +48,12 @@ curl http://127.0.0.1:9090?ip=59.42.37.186
 
 ## 下载/更新 IP 地址库
 ```
-// 仅用于下载/更新 IP 地址库
+// 仅用于下载/更新 IP 地址库 默认库 (来源于：https://github.com/lionsoul2014/ip2region)
 ./go-ip2region_windows_amd64.exe -d 1
+
+// 来源于：https://github.com/bqf9979/ip2region (PS：目前这个貌似更准确)
+// https://github.com/lionsoul2014/ip2region/issues/201#issuecomment-911697424
+./go-ip2region_windows_amd64.exe -d 2
 ```
 
 ## 自行编译
