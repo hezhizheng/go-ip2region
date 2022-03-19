@@ -13,18 +13,18 @@ import (
 )
 
 var (
-	wg   = sync.WaitGroup{}
-	port = ""
-	d    = "" // 下载标识
+	wg    = sync.WaitGroup{}
+	port  = ""
+	d     = "" // 下载标识
 	dbUrl = map[string]string{
-		"1": "https://hub.fastgit.org/lionsoul2014/ip2region/raw/master/data/ip2region.db",
-		"2": "https://hub.fastgit.org/bqf9979/ip2region/raw/master/data/ip2region.db",
+		"1": "https://ghproxy.com/?q=https://github.com/lionsoul2014/ip2region/blob/master/data/ip2region.db?raw=true",
+		"2": "https://ghproxy.com/?q=https://github.com/bqf9979/ip2region/blob/master/data/ip2region.db?raw=true",
 	}
 )
 
 const (
-	ipDbPath = "./ip2region.db"
-	defaultDbUrl = "1" // 默认下载 来自 lionsoul2014 仓库的 ip db文件
+	ipDbPath     = "./ip2region.db"
+	defaultDbUrl = "2" // 默认下载 来自 lionsoul2014 仓库的 ip db文件
 )
 
 type JsonRes struct {
@@ -39,7 +39,7 @@ type IpInfo struct {
 	Province string `json:"province"` // 省
 	City     string `json:"city"`     // 市
 	County   string `json:"county"`   // 县、区
-	Region   string  `json:"region"`  // 区域位置
+	Region   string `json:"region"`   // 区域位置
 	ISP      string `json:"isp"`      // 互联网服务提供商
 }
 
@@ -54,7 +54,7 @@ func init() {
 	if d != "0" {
 		if value, ok := dbUrl[d]; ok {
 			downloadIpDb(value)
-		}else{
+		} else {
 			downloadIpDb(dbUrl[defaultDbUrl])
 		}
 		os.Exit(1)
@@ -143,7 +143,7 @@ func checkIpDbIsExist() {
 }
 
 func downloadIpDb(url string) {
-	log.Println("正在下载最新的 ip 地址库...："+url)
+	log.Println("正在下载最新的 ip 地址库...：" + url)
 	wg.Add(1)
 	go func() {
 		downloadFile(ipDbPath, url)
