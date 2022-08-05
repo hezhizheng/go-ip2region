@@ -17,14 +17,14 @@ var (
 	port  = ""
 	d     = "" // 下载标识
 	dbUrl = map[string]string{
-		"1": "https://ghproxy.com/?q=https://github.com/lionsoul2014/ip2region/blob/master/data/ip2region.db?raw=true",
+		"1": "https://ghproxy.com/?q=https://github.com/lionsoul2014/ip2region/blob/master/data/ip2region.xdb?raw=true",
 		"2": "https://ghproxy.com/?q=https://github.com/bqf9979/ip2region/blob/master/data/ip2region.db?raw=true",
 	}
 )
 
 const (
 	ipDbPath     = "./ip2region.db"
-	defaultDbUrl = "2" // 默认下载 来自 lionsoul2014 仓库的 ip db文件
+	defaultDbUrl = "1" // 默认下载 来自 lionsoul2014 仓库的 ip db文件
 )
 
 type JsonRes struct {
@@ -85,9 +85,9 @@ func queryIp(w http.ResponseWriter, r *http.Request) {
 		}
 	}()
 
-	if  r.URL.Path != "/" {
+	if r.URL.Path != "/" {
 		w.WriteHeader(404)
-		msg, _ := json.Marshal(&JsonRes{Code: 4000, Msg: r.URL.Path+" 404 NOT FOUND !"})
+		msg, _ := json.Marshal(&JsonRes{Code: 4000, Msg: r.URL.Path + " 404 NOT FOUND !"})
 		w.Write(msg)
 		return
 	}
@@ -143,10 +143,20 @@ func getIp(r *http.Request) string {
 }
 
 func checkIpDbIsExist() {
-	if _, err := os.Stat(ipDbPath); os.IsNotExist(err) {
-		log.Println("ip 地址库文件不存在")
-		downloadIpDb(dbUrl[defaultDbUrl])
+	if d == "1" || d == "0" || d == "" {
+		if _, err := os.Stat("./ip2region.xdb"); os.IsNotExist(err) {
+			log.Println("ip 地址库文件不存在")
+			downloadIpDb(dbUrl[defaultDbUrl])
+		}
 	}
+
+	if d == "2" {
+		if _, err := os.Stat(ipDbPath); os.IsNotExist(err) {
+			log.Println("ip 地址库文件不存在")
+			downloadIpDb(dbUrl[defaultDbUrl])
+		}
+	}
+
 }
 
 func downloadIpDb(url string) {
