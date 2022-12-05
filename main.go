@@ -17,14 +17,14 @@ var (
 	port  = ""
 	d     = "" // 下载标识
 	dbUrl = map[string]string{
-		"1": "https://ghproxy.com/?q=https://github.com/lionsoul2014/ip2region/blob/master/data/ip2region.xdb?raw=true",
-		"2": "https://ghproxy.com/?q=https://github.com/bqf9979/ip2region/blob/master/data/ip2region.db?raw=true",
+		"1": "https://fastly.jsdelivr.net/gh/lionsoul2014/ip2region@master/v1.0/data/ip2region.db",
+		"2": "https://fastly.jsdelivr.net/gh/bqf9979/ip2region@master/data/ip2region.db",
 	}
 )
 
 const (
 	ipDbPath     = "./ip2region.db"
-	defaultDbUrl = "1" // 默认下载 来自 lionsoul2014 仓库的 ip db文件
+	defaultDbUrl = "2" // 默认下载 来自 bqf9979 仓库的 ip db文件
 )
 
 type JsonRes struct {
