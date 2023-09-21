@@ -2,7 +2,7 @@
 
 > 基于 [ip2region](https://github.com/lionsoul2014/ip2region)  使用 go 扩展的一个简单的 IP 地址归属地查询服务
 
-> [在线IP地址归属地查询](https://ip.hzz.cool)
+> ~~[在线IP地址归属地查询](https://ip.hzz.cool)~~ 被攻击，暂不提供
 
 ## 功能
 - 提供 http 接口查询 IP 地址归属地
